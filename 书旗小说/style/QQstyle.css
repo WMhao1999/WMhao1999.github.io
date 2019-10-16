@@ -1,0 +1,79 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box; }
+
+.hotfind .hot-items:after, .hotfind .hot-items:before {
+  content: "";
+  display: table; }
+
+.hotfind .hot-items:after {
+  clear: both; }
+
+@font-face {
+  font-family: 'iconfont';
+  src: url("iconfont.eot");
+  src: url("iconfont.eot?#iefix") format("embedded-opentype"), url("../iconfont/iconfont.woff2") format("woff2"), url("iconfont.woff") format("woff"), url("iconfont.ttf") format("truetype"), url("iconfont.svg#iconfont") format("svg"); }
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 0.25rem;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.con {
+  width: 100%; }
+  .con-hd {
+    padding: 0.3125rem 1.21875rem;
+    background: #32c27d;
+    position: relative; }
+    .con-hd .iconfont {
+      font-size: 0.4375rem;
+      padding: 0.0625rem;
+      position: absolute;
+      left: 0.25rem;
+      top: 50%;
+      transform: translateY(-50%); }
+    .con-hd input {
+      width: 100%;
+      height: 0.9375rem;
+      line-height: 0.59375rem;
+      background: #32c27d;
+      color: #b2f2ca;
+      border: none;
+      outline: none; }
+  .hotfind {
+    width: 100%;
+    background: #f3f3f3;
+    padding: 1.09375rem 0.5625rem 0.53125rem; }
+    .hotfind .hot-tit {
+      font-size: 0.34375rem;
+      color: #8f8f8d; }
+    .hotfind .listtit {
+      font-size: 0.34375rem;
+      color: #8f8f8d; }
+    .hotfind .hot-items {
+      width: 100%;
+      height: 2.8125rem;
+      overflow: hidden;
+      margin-bottom: 1.15625rem; }
+      .hotfind .hot-items span {
+        float: left;
+        padding: 0.1875rem 0.25rem;
+        font-size: 0.3125rem;
+        border: 0.03125rem #979795 solid;
+        border-radius: 0.46875rem;
+        margin: 0.28125rem 0.125rem; }
+  .songList {
+    padding: 0.59375rem; }
+    .songList li {
+      line-height: 1.375rem;
+      font-size: 0.34375rem;
+      border-bottom: 0.03125rem #f4f4f2 solid; }
+  .foot {
+    width: 100%;
+    position: fixed;
+    bottom: 0px; }
+    .foot audio {
+      width: 100%; }

@@ -1,0 +1,69 @@
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+%clearfix {
+
+    &:after,
+    &:before {
+        content: "";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+.con {
+    width: 100%;
+    background: #fff;
+
+    @at-root {
+        .contit {
+            width: 100%;
+            line-height: 72px;
+            font-size: 28px;
+            color: #525251;
+            text-align: center;
+        }
+
+        .girllist,
+        .boylist {
+            @at-root {
+                .listtit {
+                    padding: 0 26px;
+                    line-height: 62px;
+                    background: #f8f8f8;
+                    color: #b0b2b3;
+                }
+
+                .girl,
+                .boy {
+                    padding: 0 26px;
+                    list-style: none;
+
+                    li {
+                        padding: 24px 0;
+                        border-bottom: 3px #f5f5f5 solid;
+
+                        .itemtit {
+                            font-size: 24px;
+                            margin-bottom: 12px;
+                        }
+
+                        span {
+                            color: #c7bbb8;
+                            font-size: 20px;
+                            margin-right: 6px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}

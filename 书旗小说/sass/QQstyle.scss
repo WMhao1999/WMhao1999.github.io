@@ -1,0 +1,123 @@
+@charset "utf-8";
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+%clearfix {
+
+    &:after,
+    &:before {
+        content: "";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+@font-face {
+    font-family: 'iconfont';
+    src: url('iconfont.eot');
+    src: url('iconfont.eot?#iefix') format('embedded-opentype'),
+        url('../iconfont/iconfont.woff2') format('woff2'),
+        url('iconfont.woff') format('woff'),
+        url('iconfont.ttf') format('truetype'),
+        url('iconfont.svg#iconfont') format('svg');
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.con {
+    width: 100%;
+
+    @at-root {
+        .con-hd {
+            padding: 20px 78px;
+            background: #32c27d;
+            position: relative;
+
+            .iconfont {
+                font-size: 28px;
+                padding: 4px;
+                position: absolute;
+                left: 16px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            input {
+                width: 100%;
+                height: 60px;
+                line-height: 38px;
+                background: #32c27d;
+                color: #b2f2ca;
+                border: none;
+                outline: none;
+            }
+        }
+
+        .hotfind {
+            width: 100%;
+            background: #f3f3f3;
+            padding: 70px 36px 34px;
+
+            .hot-tit {
+                font-size: 22px;
+                color: #8f8f8d;
+            }
+
+            .listtit {
+                font-size: 22px;
+                color: #8f8f8d;
+            }
+
+            .hot-items {
+                width: 100%;
+                height: 180px;
+                overflow: hidden;
+                margin-bottom: 74px;
+                @extend %clearfix;
+
+                span {
+                    float: left;
+                    padding: 12px 16px;
+                    font-size: 20px;
+                    border: 2px #979795 solid;
+                    border-radius: 30px;
+                    margin: 18px 8px;
+                }
+            }
+        }
+
+        .songList {
+            padding: 38px;
+
+            li {
+                line-height: 88px;
+                font-size: 22px;
+                border-bottom: 2px #f4f4f2 solid;
+            }
+        }
+
+        .foot {
+            width: 100%;
+            position: fixed;
+            bottom: 0px;
+
+            audio {
+                width: 100%;
+            }
+        }
+
+    }
+}

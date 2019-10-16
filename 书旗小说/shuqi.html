@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="js/flexible.js"></script>
+	<script src="js/flexible_css.js"></script>
+	<link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+	<div id="box1" v-cloak="">
+		<div class="content" @touchmove="run($event)" ref="content">
+			<div class="head">
+				搜索中心
+			</div>
+			<div class="find">
+				<span class="iconfont left" @click="get()">&#xe682;</span>
+				<input type="text" v-model="value">
+				<span class="iconfont right" @click="value=''">&#xe738;</span>
+			</div>
+			<div class="con">
+				<div class="tit">
+					<img :src="firstCover">
+					<h4>{{firstTit}}</h4>
+					<p>{{firstAuthor}}</p>
+					<div>
+						<span v-for="i in firstTags.split(',')">{{i}}</span>
+					</div>
+					<div class="start-seach">
+						<div class="start">开始阅读</div>
+						<div class="seach">查看目录</div>
+					</div>
+				</div>
+				<div class="main">
+					<div class="tit" v-for="i in dataArr" ref="tit">
+						<img :src="i.cover">
+						<h4>{{i.title}}</h4>
+						<p>{{i.author}}</p>
+						<div>
+							<span v-for="m in i.tags.split(',')">{{m}}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+<script>
+	var vm = new Vue({
+		el: '#box1',
+		data: {
+			url: 'http://read.xiaoshuo1-sm.com/novel/i.php',
+			value: "武",
+			firstTit: "",
+			firstAuthor: "",
+			firstCover: "",
+			firstTags: "",
+			dataArr: "",
+			tags: "",
+			size: 10,
+			n: 0,
+			oClient: ""
+		},
+		methods: {
+			get() {
+				this.$http.get(this.url, {
+					params: {
+						do: 'is_serchpay',
+						page: 1,
+						size: this.size,
+						q: this.value,
+						filterMigu: 1,
+						p: 3,
+						shuqi_h5: "",
+						_: 1567131371925
+					}
+				}).then((data) => {
+					this.firstTit = data.data.aladdin.title
+					this.firstAuthor = data.data.aladdin.author
+					this.firstCover = data.data.aladdin.cover
+					this.dataArr = data.data.data
+					this.firstTags = data.data.aladdin.tags
+				})
+			},
+			run(ev) {
+				this.n = document.documentElement.scrollTop
+				this.oClient = document.documentElement.clientHeight
+				if (this.n + this.oClient >= this.$refs.tit[this.$refs.tit.length - 1].offsetTop) {
+					if (this.size == 20) {
+						this.size == 20
+					} else {
+						this.size += 1
+						this.get()
+					}
+
+				}
+			},
+			change() {
+				this.size = 10
+			}
+		},
+		created() {
+			this.get()
+		},
+	})
+
+</script>
+
+</html>
