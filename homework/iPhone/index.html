@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			text-decoration: none;
+		}
+
+		.line {
+			width: 2px;
+			display: block;
+			height: 2px;
+			background: #fff;
+			margin: 0 auto;
+			transform: scaleX(0);
+		}
+
+		.tapword-enter {
+			opacity: 0;
+		}
+
+		.tapword-enter-active,
+		.tapword-leave-active {
+			transition: .5s;
+		}
+
+		.tapword-enter-to,
+		.tapword-leave {
+			opacity: 1;
+		}
+
+		.tapword-leave-to {
+			opacity: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="con">
+		<div class="nav" style="height: 93px; line-height: 93px; padding: 0 4%;">
+			<div style="float: left; width: 132px; margin-right: 6%;">
+				<img style="width: 100%;"
+					src="https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvMmE4YWZmM2RkZmJkYWU5YmFjMjhmOTczNGUzOTE1NWMucG5n.png"
+					alt="研发型创意企业">
+			</div>
+			<div v-for="(i,$index) in titdata"
+				style=" float: left; line-height: 80px; margin: 0 4%; position: relative;" v-move @click="index=$index">
+				<a :href="i.path" :style="{color:index==$index?'#ccc':'#fff'}">{{i.name}}</a>
+				<i class="line"></i>
+			</div>
+		</div>
+		<div class="mian">
+			<router-view></router-view>
+		</div>
+	</div>
+	<template id="index">
+		<div>
+			<div style="position: absolute; top: 0px; width: 100%; z-index: -3;">
+				<div
+					style="position: absolute; top: 0; left: 0; background: url('http://57e243aaa779a.t73.qifeiye.com/qfy-content/uploads/2016/10/f549634402d680ae8cccd5a6039000b5.jpg');min-height: 670px;width: 100%; z-index: -9;background-size: 100%;">
+				</div>
+				<div
+					style="position: absolute; top: 0; left: 0; width: 100%; height: 670px; background: rgba(0,0,0,.5);">
+
+					<div
+						style="width: 100%; position: absolute; top: 50%; transform: translateY(-50%); text-align: center; color:#fff;">
+						<transition name="tapword" v-for="(i,$index) in word">
+							<div v-show="index==$index" style="position: absolute;width: 100%;">
+								<h1 style="line-height: 80px;">{{i.tit}}</h1>
+								<p>{{i.engtit}}</p>
+							</div>
+						</transition>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<template id="send">
+		<div>
+			<div style="position: absolute;top: 0; width: 100%; z-index: -9; height: 345px;">
+				<div
+					style="min-height: 345px; width: 100%; position: absolute;left: 0; top: 0; background: url('https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvMDViZjRkNzAxMDU2NTNkNjI2ODQ2NmY4ZGY4NzFmM2YuanBn.jpg');background-size: 100%;background-position-y: 30%;">
+				</div>
+				<div
+					style="min-height: 345px; width: 100%; position: absolute;left: 0; top: 0; background: rgba(0,0,0,.5);">
+				</div>
+			</div>
+			<div
+				style="min-height: 750px; padding-top: 60px; margin-top: 252px; background-image: url('https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMDkvZGMyODkyNzE4YWUxZTY2NDFmNTlkNmU2YjRjN2JhNmIuanBn.jpg'); background-repeat:no-repeat; background-size:cover; background-attachment:scroll; background-position:0 23%;;">
+				<div style="text-align: center;">
+					<h1 style="color:#494949;font-size: 34px;font-weight: normal;font-family:微软雅黑 ; line-height: 60px;">
+						产品发布
+						<i style="display: block; width: 50px; height: 2px; background: #54d7e0; margin: 0 auto;"></i>
+					</h1>
+					<p style="line-height: 40px; font-family: 微软雅黑; font-size: 14px; color: #696969;">
+						応捠捡换攴朰朸妀夲夳夵壱，売圢圤圥圦圧圪咐咑厺厼厽帄帇</p>
+				</div>
+				<div style="text-align: center;margin-top: 20px;">
+					<img src="https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMDkvNGQxZGJmMGU0MTg5YWUxYWU1ZjNmZDkyZjc3OWRhMGItNzY2eDUwMC5wbmc_p_p100_p_3D.png"
+						alt="">
+				</div>
+			</div>
+		</div>
+	</template>
+	<template id="ask">
+		<div>
+			<div style="position: absolute;top: 0; width: 100%; z-index: -9; height: 345px;">
+				<div
+					style="min-height: 345px; width: 100%; position: absolute;left: 0; top: 0; background:url('https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvOTk4ZGE5MWY4MGZiNDg3NjU4MjI2MDQ1NzBhY2RmNDYuanBn.jpg');background-size: 100%;background-position-y: 30%;">
+				</div>
+				<div
+					style="min-height: 345px; width: 100%; position: absolute;left: 0; top: 0; background: rgba(0,0,0,.5);">
+				</div>
+			</div>
+			<div style="margin-top: 252px; padding: 40px ; min-height: 400px;">
+				<div style="width: 60%; margin: 0 auto; min-height: 400px;">
+					<div
+						style="min-height: 400px; width: 25%; float: left; line-height: 60px; box-sizing: border-box; padding: 20px;color: #666666;">
+						<div style="border-bottom: #666666 solid 1px; cursor: pointer;" v-for="(i,$index) in tit"
+							@click="index=$index">{{i}}</div>
+					</div>
+					<div style="min-height: 400px; width: 75%; float: right;">
+						<div v-if="index==0">
+							<div v-for="i in news">
+								<div style="overflow: hidden; padding: 4px;">
+									<div style="float: left; margin-right: 6px;">
+										<a :href=`#/main/${i.tit}/${i.time}`> <img :src="i.icon">
+										</a>
+									</div>
+									<div>
+										<a :href=`#/main/${i.tit}/${i.time}` style="color: #000;">
+											<h4 style="line-height: 26px;">{{i.tit}}</h4>
+										</a>
+										<span
+											style="display: block; font-size: 12px; color: #4cd7de;">时间：{{i.time}}</span>
+										<p style="font-size: 12px; line-height: 18px;">{{i.main}}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div v-if="index==1">
+							<div v-for="i in gnews">
+								<div style="overflow: hidden; padding: 4px;">
+									<div style="float: left; margin-right: 6px;">
+										<a :href=`#/main/${i.tit}/${i.time}`> <img :src="i.icon">
+										</a>
+									</div>
+									<div>
+										<a :href=`#/main/${i.tit}/${i.time}` style="color: #000;">
+											<h4 style="line-height: 26px;">{{i.tit}}</h4>
+										</a>
+										<span
+											style="display: block; font-size: 12px; color: #4cd7de;">时间：{{i.time}}</span>
+										<p style="font-size: 12px; line-height: 18px;">{{i.main}}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div v-if="index==2">
+							<div v-for="i in hnews">
+								<div style="overflow: hidden; padding: 4px;">
+									<div style="float: left; margin-right: 6px;">
+										<a :href=`#/main/${i.tit}/${i.time}`> <img :src="i.icon">
+										</a>
+									</div>
+									<div>
+										<a :href=`#/main/${i.tit}/${i.time}` style="color: #000;">
+											<h4 style="line-height: 26px;">{{i.tit}}</h4>
+										</a>
+										<span
+											style="display: block; font-size: 12px; color: #4cd7de;">时间：{{i.time}}</span>
+										<p style="font-size: 12px; line-height: 18px;">{{i.main}}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<template id="main">
+		<div>
+			<div style="position: absolute;top: 0; width: 100%; z-index: -9; height: 220px;">
+				<div
+					style="min-height: 220px; width: 100%; position: absolute;left: 0; top: 0; background:url('https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvOTk4ZGE5MWY4MGZiNDg3NjU4MjI2MDQ1NzBhY2RmNDYuanBn.jpg');background-size: 100%;background-position-y: 30%;">
+				</div>
+				<div
+					style="min-height: 220px; width: 100%; position: absolute;left: 0; top: 0; background: rgba(0,0,0,.5);">
+				</div>
+			</div>
+			<div style="margin-top: 200px; min-height: 300px;">
+				<div style="min-height: 300px;width: 60%; margin: 0 auto;">
+					<button type="button" @click="$router.go(-1)"
+						style="background: #FFFFFF; border: none; margin-bottom: 20px; cursor: pointer; text-decoration: line-through;">返回上一级</button>
+					<h2>{{$route.params.tit}}</h2>
+					<p style="line-height: 80px;">发布时间：{{$route.params.time}}</p>
+					<div style="margin-bottom: 30px;">
+						<img style="width: 300px; height: 200px;"
+							src="https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvMDViZjRkNzAxMDU2NTNkNjI2ODQ2NmY4ZGY4NzFmM2YtMTgweDEyMC5qcGc_p_p100_p_3D.jpg"
+							alt="">
+					</div>
+					<div style="line-height: 30px;">
+						起飞页推崇用户自己创建网站并享受建站所带来的乐趣，因此我们为您准备了一套安全、稳定、不揪心的自助建站系统：在这里，您只需打字传图、用鼠标自由拖拽，便可在弹指间做出极具专业级别的网站。我们以全球首创的网页线性布局方案和傻瓜式图文编辑为核心，研发出这种颠覆传统的响应式网站制作方式，可以为您节约90%的建站时间。
+
+						起飞页的工作团队是一群热爱互联网及软件事业的大伙伴和小伙伴，经验丰富、成熟稳定，基于对网站出版行业的热爱、对人人都能做出精美网站的向往，公司投入一千万元人民币，历时两年时间打造出起飞页平台。截至2015年底，在起飞页上创建的网站已超过10万+。
+
+						起飞页推崇用户自己创建网站并享受建站所带来的乐趣，因此我们为您准备了一套安全、稳定、不揪心的自助建站系统：在这里，您只需打字传图、用鼠标自由拖拽，便可在弹指间做出极具专业级别的网站。我们以全球首创的网页线性布局方案和傻瓜式图文编辑为核心，研发出这种颠覆传统的响应式网站制作方式，可以为您节约90%的建站时间。
+
+						起飞页的工作团队是一群热爱互联网及软件事业的大伙伴和小伙伴，经验丰富、成熟稳定，基于对网站出版行业的热爱、对人人都能做出精美网站的向往，公司投入一千万元人民币，历时两年时间打造出起飞页平台。截至2015年底，在起飞页上创建的网站已超过10万+。
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+</body>
+
+</html>
+<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/vue-router.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	Vue.directive('move', (a, b) => {
+		a.onmouseenter = function () {
+			a.children[1].style.transform = 'scaleX(30)'
+			a.children[1].style.transition = .3 + 's'
+		}
+		a.onmouseleave = function () {
+			a.children[1].style.transform = 'scaleX(0)'
+			a.children[1].style.transition = .3 + 's'
+		}
+	})
+	var router = new VueRouter({
+		routes: [{
+			path: '/',
+			component: {
+				template: '#index',
+				data() {
+					return {
+						index: 0,
+						word: [{
+							tit: '我们无法做到完美， 但追求完美能让人卓越',
+							engtit: 'Perfection’snot attainable, but if we chase it we can catch excellence.'
+						},
+						{
+							tit: '我们无法做到完美',
+							engtit: 'Perfection’snot attainable'
+						},
+						{
+							tit: '但追求完美能让人卓越',
+							engtit: 'But if we chase it we can catch excellence.'
+						}
+						]
+					}
+				},
+				created() {
+					setInterval(() => {
+						this.index++
+						if (this.index > 2) {
+							this.index = 0
+						}
+					}, 3000)
+				}
+			},
+		},
+		{
+			path: '/send',
+			component: {
+				template: '#send'
+			}
+		},
+		{
+			path: '/ask',
+			component: {
+				template: '#ask',
+				data() {
+					return {
+						index: 0,
+						tit: ['全部发布', '公司新闻', '行业咨询'],
+						news: [{
+							icon: 'https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvMDViZjRkNzAxMDU2NTNkNjI2ODQ2NmY4ZGY4NzFmM2YtMTgweDEyMC5qcGc_p_p100_p_3D.jpg',
+							tit: '三大能源停征价格调节基金为煤炭资源税改革清路',
+							time: '2017-03-14',
+							main: '起飞页的工作团队是一群热爱互联网及软件事业的大伙伴和小伙伴，经验丰富、成熟稳定，基于对网站出版行业的热爱、对人人都能做出精美网站的向往，公司投入一千万元人民币，历时两年时间打造出起飞页平台。截至2015年底，在起飞页上创建的网站已超过10万+。',
+							type: '公司新闻'
+						},
+						{
+							icon: 'https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvOWVmMDY3ODQ0ZDIzZmFiZDA2Y2NkNjVkZGY2MWQyZDgtMTgweDEyMC5qcGc_p_p100_p_3D.jpg',
+							tit: '北京130多家工业企业采取停限产措施应对雾霾',
+							time: '2017-03-14',
+							main: '起飞页的工作团队是一群热爱互联网及软件事业的大伙伴和小伙伴，经验丰富、成熟稳定，基于对网站出版行业的热爱、对人人都能做出精美网站的向往，公司投入一千万元人民币，历时两年时间打造出起飞页平台。截至2015年底，在起飞页上创建的网站已超过10万+。',
+							type: '公司新闻'
+						},
+						{
+							icon: 'https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvOWFjMDViN2VmMzVkYmVhOGU5ZTI2MDQ2OGY4M2E1MjEtMTgweDEyMC5qcGc_p_p100_p_3D.jpg',
+							tit: '三大能源停征价格调节基金为煤炭资源税改革清路',
+							time: '2017-03-14',
+							main: '起飞页的工作团队是一群热爱互联网及软件事业的大伙伴和小伙伴，经验丰富、成熟稳定，基于对网站出版行业的热爱、对人人都能做出精美网站的向往，公司投入一千万元人民币，历时两年时间打造出起飞页平台。截至2015年底，在起飞页上创建的网站已超过10万+。',
+							type: '行业咨询'
+						}
+						],
+						gnews: [{
+							icon: 'https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvMDViZjRkNzAxMDU2NTNkNjI2ODQ2NmY4ZGY4NzFmM2YtMTgweDEyMC5qcGc_p_p100_p_3D.jpg',
+							tit: '三大能源停征价格调节基金为煤炭资源税改革清路',
+							time: '2017-03-14',
+							main: '起飞页的工作团队是一群热爱互联网及软件事业的大伙伴和小伙伴，经验丰富、成熟稳定，基于对网站出版行业的热爱、对人人都能做出精美网站的向往，公司投入一千万元人民币，历时两年时间打造出起飞页平台。截至2015年底，在起飞页上创建的网站已超过10万+。',
+							type: '公司新闻'
+						},
+						{
+							icon: 'https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvOWVmMDY3ODQ0ZDIzZmFiZDA2Y2NkNjVkZGY2MWQyZDgtMTgweDEyMC5qcGc_p_p100_p_3D.jpg',
+							tit: '北京130多家工业企业采取停限产措施应对雾霾',
+							time: '2017-03-14',
+							main: '起飞页的工作团队是一群热爱互联网及软件事业的大伙伴和小伙伴，经验丰富、成熟稳定，基于对网站出版行业的热爱、对人人都能做出精美网站的向往，公司投入一千万元人民币，历时两年时间打造出起飞页平台。截至2015年底，在起飞页上创建的网站已超过10万+。',
+							type: '公司新闻'
+						},
+						],
+						hnews: [
+							{
+								icon: 'https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvOWFjMDViN2VmMzVkYmVhOGU5ZTI2MDQ2OGY4M2E1MjEtMTgweDEyMC5qcGc_p_p100_p_3D.jpg',
+								tit: '三大能源停征价格调节基金为煤炭资源税改革清路',
+								time: '2017-03-14',
+								main: '起飞页的工作团队是一群热爱互联网及软件事业的大伙伴和小伙伴，经验丰富、成熟稳定，基于对网站出版行业的热爱、对人人都能做出精美网站的向往，公司投入一千万元人民币，历时两年时间打造出起飞页平台。截至2015年底，在起飞页上创建的网站已超过10万+。',
+								type: '行业咨询'
+							}
+						]
+					}
+				},
+			}
+		},
+		{
+			path: '/main/:tit/:time',
+			component: {
+				template: '#main',
+			}
+		}
+		]
+	})
+	new Vue({
+		el: '#con',
+		data: {
+			index: 0,
+			titdata: [{
+				name: '首页',
+				path: '#/'
+			},
+			{
+				name: '产品发布',
+				path: '#/send'
+			},
+			{
+				name: '咨询发布',
+				path: '#/ask'
+			},
+			]
+		},
+		router
+	})
+</script>

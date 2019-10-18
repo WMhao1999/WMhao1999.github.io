@@ -1,0 +1,84 @@
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+}
+body,
+html{
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+	background: url('http://pic1.win4000.com/wallpaper/2019-05-20/5ce21e7e6d0f0.jpg');
+	background-size: 100%;
+}
+.hd{
+	width: 100%;
+	height: 52px;
+	background: #fff;
+	margin-bottom: 40px;
+}
+.hd_con{
+	height: 52px;
+	line-height: 52px;
+	width: 56%;
+	margin: 0 auto;
+	display: flex;
+}
+.hd_con>div{
+	flex: 1;
+	float: left;
+	text-align: center;
+	font-size: 14px;
+}
+.main_con{
+	width: 56%;
+	margin: 0 auto;
+}
+.find{
+	padding: 0 20%;
+	overflow: hidden;
+	margin-bottom: 40px;
+}
+.find_l{
+	float: left;
+	width: 75%;
+}
+.find_r{
+	float: right;
+}
+.findhot{
+	padding: 0 20%;
+}
+.listitem{
+	padding: 0 6%;
+	overflow: hidden;
+	line-height: 52px;
+	text-align: left;
+}
+.list_l{
+	float: left;
+	width: 50%;
+	box-sizing: border-box;
+}
+.list_r{
+	float: right;
+	width: 50%;
+	overflow: hidden;
+	display: flex;
+}
+.list_r>div{
+	float: left;
+	flex: 1;
+}
+.gofind{
+	text-align: center;
+}
+
+
+.foot{
+	position: fixed;
+	bottom: 0;
+	min-height: 52px;
+	background: rgba(255,255,255,.6);
+	width: 100%;
+}

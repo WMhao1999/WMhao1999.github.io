@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>QQmusic</title>
+		<link rel="stylesheet" type="text/css" href="style/style.css" />
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	</head>
+	<body>
+		<div id="con">
+			<div class="hd">
+				<div class="hd_con">
+					<div v-for="(i,$index) in titdata" @click="titindex=$index">
+						<a :href="i.path" :style="{color:$index==titindex?'#31c27c':'#000'}">{{i.name}}</a>
+					</div>
+				</div>
+			</div>
+			<div class="main">
+				<div class="main_con">
+					<router-view></router-view>
+				</div>
+			</div>
+			<div class="foot">
+				<audio controls="controls" :src="src" autoplay="autoplay"></audio>
+			</div>
+		</div>
+		<template id="index">
+			<div>
+				<div class="find">
+					<div class="find_l">
+						<el-input placeholder="搜索音乐、MV、歌单、用户" v-model="input" clearable @focus="findhot">
+						</el-input>
+					</div>
+					<div class="find_r">
+						<a :href="input==''?'#/':'#/findlist/'+input" style="color: #fff;">
+							<el-button type="primary" icon="el-icon-search" style="background: #31c27c; border: none;">
+								搜索
+							</el-button>
+						</a>
+					</div>
+				</div>
+				<div class="findhot">
+					<el-tag type="success" v-for="i in hotitem" style="margin: 6px; cursor: pointer;" @click="hotclick(i.k)">{{i.k}}</el-tag>
+				</div>
+			</div>
+		</template>
+		<template id="findlist">
+			<div>
+				<div class="findlist" v-if="$route.params.songname!=':songname'">
+					<div class="findlisttit" style="background: #ccc; margin-bottom: 20px;">
+						<div class="listitem">
+							<div class="list_l">歌曲</div>
+							<div class="list_r">
+								<div>歌手</div>
+								<div>专辑</div>
+							</div>
+						</div>
+					</div>
+					<div class="findlistmain" style="font-size: 14px;">
+						<div class="listitem" v-for="(i,$index) in songlist" :style="{background:$index%2==0?'#ddd':'rgba(255,255,255,.5)'}">
+							<div class="list_l">
+								<a :href="'#/playlist/'+i.songmid" style="color: #31c27c;">{{i.songname}}</a>
+							</div>
+							<div class="list_r" style="color: #000;">
+								<div>
+									<span v-for="w in i.singer" style="cursor: pointer; margin-right: 8px;">{{w.name}}</span>
+								</div>
+								<div style="cursor: pointer;">{{i.albumname}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="gofind" v-if="$route.params.songname==':songname'">
+					还没有歌曲哦，赶紧先去首页搜索吧！
+					<br>
+					<br>
+					<br>
+					<a href="#/">点我去搜索吧</a>
+				</div>
+			</div>
+		</template>
+		<template id="sort">
+			<div>
+				排行榜
+			</div>
+		</template>
+		<template id="songlist">
+			<div>
+				歌单
+			</div>
+		</template>
+		<template id="singer">
+			<div>
+				歌手
+			</div>
+		</template>
+		<template id="playlist">
+			<div>
+				<div class="playlist" v-if="getsong">
+					11111
+				</div>
+				<div class="playlist" v-if="!getsong">
+					2222
+				</div>
+			</div>
+		</template>
+	</body>
+	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/vue-router.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/vue-resource.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<script src="js/js.js" type="text/javascript" charset="utf-8"></script>
+</html>
