@@ -36,7 +36,7 @@ var routes = [{
 					songlist: ''
 				}
 			},
-			created() {
+			activated() {
 				this.$http.jsonp('https://c.y.qq.com/soso/fcgi-bin/client_search_cp', {
 					params: {
 						g_tk: 5381,
@@ -70,6 +70,22 @@ var routes = [{
 		path: '/sort',
 		component: {
 			template: '#sort',
+			data(){
+				return{
+					sortlist:[]
+				}
+			},
+			created(){
+				this.$http.jsonp('https://c.y.qq.com/v8/fcg-bin/fcg_myqq_toplist.fcg?',{
+					params:{
+						format:'jsonp',
+						jsonpCallback:'MusicJsonCallback'
+					},
+					jsonpCallback:'MusicJsonCallback'
+				}).then((res)=>{
+					this.sortlist = res.data.data.topList
+				})
+			}
 		}
 	},
 	{
@@ -79,24 +95,73 @@ var routes = [{
 		}
 	},
 	{
-		path: '/singer',
+		path: '/singer/:singermid',
 		component: {
 			template: '#singer',
+			data(){
+				return{
+					singerlist:''
+				}
+			},
+			activated(){
+				this.$http.jsonp('https://c.y.qq.com/v8/fcg-bin/fcg_v8_singer_track_cp.fcg',{
+					params:{
+						singermid:this.$route.params.singermid,
+						begin:0,
+						num:30,
+						format:'jsonp',
+						jsonpCallback:'callback'
+					},
+					jsonpCallback:'callback'
+				}).then((res)=>{
+					console.log(res.data.data)
+					this.singerlist = res.data.data
+				})
+			}
 		}
 	},
 	{
-		path: '/playlist/:mid',
+		path: '/playlist/:mid/:songname',
 		component: {
 			template: '#playlist',
 			data() {
 				return {
-					mid: '',
-					src: '',
 					getsong: true,
+					arr:[]
 				}
 			},
+			activated(){
+				this.arr.unshift({
+					name:this.$route.params.songname,
+					mid:this.$route.params.mid
+				}) 
+			}
+		}
+	},
+	{
+		path:'/sortlist/:id',
+		component:{
+			template:'#sortlist',
+			data(){
+				return{
+					songlist:''
+				}
+			},
+			activated(){
+				this.$http.jsonp('https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg',{
+					params:{
+						topid:this.$route.params.id,
+						format:'jsonp',
+						jsonpCallback:'callback'
+					},
+					jsonpCallback:'callback'
+				}).then((res)=>{
+					this.songlist = res.data.songlist
+				})
+			}
 		}
 	}
+	
 ]
 var router = new VueRouter({
 	routes
@@ -168,8 +233,12 @@ new Vue({
 			this.titindex = 0
 		} else if (this.$route.path == '/findlist/' + this.$route.params.songname) {
 			this.titindex = 1
-		} else if ('/playlist/' + this.$route.params.mid == this.$route.path) {
+		} else if (`/playlist/${this.$route.params.mid}/${this.$route.params.songname}`== this.$route.path) {
 			this.titindex = 5
+		}else if ('/sort' == this.$route.path) {
+			this.titindex = 2
+		}else if ('/singer/'+this.$route.params.singermid == this.$route.path) {
+			this.titindex = 4
 		}
 	},
 	updated() {
@@ -177,8 +246,12 @@ new Vue({
 			this.titindex = 0
 		} else if (this.$route.path == '/findlist/' + this.$route.params.songname) {
 			this.titindex = 1
-		} else if ('/playlist/' + this.$route.params.mid == this.$route.path) {
+		} else if (`/playlist/${this.$route.params.mid}/${this.$route.params.songname}`== this.$route.path) {
 			this.titindex = 5
+		}else if ('/sort' == this.$route.path) {
+			this.titindex = 2
+		}else if ('/singer/'+this.$route.params.singermid == this.$route.path) {
+			this.titindex = 4
 		}
 	},
 	router

@@ -17,11 +17,13 @@
 			</div>
 			<div class="main">
 				<div class="main_con">
-					<router-view></router-view>
+					<keep-alive>
+						<router-view></router-view>
+					</keep-alive>
 				</div>
 			</div>
 			<div class="foot">
-				<audio controls="controls" :src="src" autoplay="autoplay"></audio>
+				<audio :src="src" autoplay="autoplay"></audio>
 			</div>
 		</div>
 		<template id="index">
@@ -59,11 +61,13 @@
 					<div class="findlistmain" style="font-size: 14px;">
 						<div class="listitem" v-for="(i,$index) in songlist" :style="{background:$index%2==0?'#ddd':'rgba(255,255,255,.5)'}">
 							<div class="list_l">
-								<a :href="'#/playlist/'+i.songmid" style="color: #31c27c;">{{i.songname}}</a>
+								<a :href=`#/playlist/${i.songmid}/${i.songname}` style="color: #31c27c;">{{i.songname}}</a>
 							</div>
 							<div class="list_r" style="color: #000;">
 								<div>
-									<span v-for="w in i.singer" style="cursor: pointer; margin-right: 8px;">{{w.name}}</span>
+									<span v-for="w in i.singer" style="cursor: pointer; margin-right: 8px;">
+										<a :href=`#/singer/${w.mid}` style="color: #FFFFFF;">{{w.name}}</a>
+									</span>
 								</div>
 								<div style="cursor: pointer;">{{i.albumname}}</div>
 							</div>
@@ -80,8 +84,20 @@
 			</div>
 		</template>
 		<template id="sort">
-			<div>
-				排行榜
+			<div style="color: #fff;">
+				<h2 style="font-size: 26px; line-height: 60px;">巅峰榜</h2>
+				<div class="sort">
+					<div v-for="i in sortlist">
+						<a :href=`#/sortlist/${i.id}` style="width: 150px; height: 150px;">
+							<img :src="i.picUrl">
+						</a>
+						<a href="#/sortlist" style="color: #FFFFFF;">
+							<h2>{{i.topTitle}}</h2>
+						</a>
+						<p v-for="w in i.songList">{{w.songname}} - {{w.singername}}</p>
+					</div>
+				</div>
+				
 			</div>
 		</template>
 		<template id="songlist">
@@ -90,17 +106,52 @@
 			</div>
 		</template>
 		<template id="singer">
-			<div>
-				歌手
+			<div style="color: #FFFFFF;">
+				<h2 style="line-height: 80px;">{{singerlist.singer_name}}</h2>
+				<div>
+					<div class="listitem" v-for="(i,$index) in singerlist.list" :style="{background:$index%2==0?'#ddd':'rgba(255,255,255,.5)'}">
+						<div class="list_l">
+							<a :href=`#/playlist/${i.musicData.songmid}/${i.musicData.songname}` style="color: #31c27c;">{{i.musicData.songname}}</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</template>
 		<template id="playlist">
 			<div>
+				<h2 style="line-height: 80px; color: #FFFFFF;">播放列表</h2>
 				<div class="playlist" v-if="getsong">
-					11111
+					<div class="listitem" v-for="(i,$index) in arr" :style="{background:$index%2==0?'#ddd':'rgba(255,255,255,.5)'}">
+						<div class="list_l">
+							<a :href=`#/playlist/${i.mid}/${i.name}` style="color: #31c27c;">{{$index+1}}.     {{i.name}}</a>
+						</div>
+					</div>
 				</div>
-				<div class="playlist" v-if="!getsong">
-					2222
+			</div>
+		</template>
+		<template id="sortlist">
+			<div>
+				<div class="findlisttit" style="background: #ccc; margin-bottom: 20px;">
+					<div class="listitem">
+						<div class="list_l">歌曲</div>
+						<div class="list_r">
+							<div>歌手</div>
+							<div>专辑</div>
+						</div>
+					</div>
+				</div>
+				<div class="listitem" v-for="(i,$index) in songlist" :style="{background:$index%2==0?'#ddd':'rgba(255,255,255,.5)'}">
+					<div class="list_l">
+						<a :href=`#/playlist/${i.data.songmid}/${i.data.songname}` style="color: #31c27c;">{{$index+1}}.   {{i.data.songname}}</a>
+					</div>
+					<div class="list_r" style="color: #000;">
+						<div>
+							<span v-for="w in i.data.singer" style="cursor: pointer; margin-right: 8px;">
+								<a :href=`#/singer/${w.mid}` style="color: #FFFFFF;">{{w.name}}</a>
+							</span>
+						</div>
+						<div style="cursor: pointer;">{{i.data.albumname}}</div>
+					</div>
 				</div>
 			</div>
 		</template>

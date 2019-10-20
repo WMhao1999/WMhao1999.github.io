@@ -82,3 +82,30 @@ html{
 	background: rgba(255,255,255,.6);
 	width: 100%;
 }
+.sort{
+	overflow: hidden;
+}
+.sort>div{
+	width: 42%;
+	background: rgba(0,0,0,.6);
+	padding: 10px;
+	border-radius: 8px;
+	float: left;
+	margin: 30px 10px;
+}
+.sort>div img{
+	float: left;
+	width: 150px;
+	height: 150px;
+	margin-right: 16px;
+}
+.sort>div>h2{
+	font-size: 22px;
+}
+.sort>div>p{
+	line-height: 30px;
+	font-size: 14px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
