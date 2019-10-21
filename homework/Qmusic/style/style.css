@@ -11,6 +11,9 @@ html{
 	background: url('http://pic1.win4000.com/wallpaper/2019-05-20/5ce21e7e6d0f0.jpg');
 	background-size: 100%;
 }
+[v-cloak]{
+	display: none;
+}
 .hd{
 	width: 100%;
 	height: 52px;
@@ -45,6 +48,7 @@ html{
 }
 .find_r{
 	float: right;
+	width: 10%;
 }
 .findhot{
 	padding: 0 20%;
@@ -69,6 +73,9 @@ html{
 .list_r>div{
 	float: left;
 	flex: 1;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 .gofind{
 	text-align: center;

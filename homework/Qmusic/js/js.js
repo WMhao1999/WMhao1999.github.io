@@ -172,29 +172,30 @@ new Vue({
 		src: '',
 		titindex: 0,
 		getsong: true,
+		arr:[],
 		titdata: [{
 				name: '首页',
-				path: '#/',
+				path: '',
 			},
 			{
 				name: '歌曲列表',
-				path: '#/findlist/:songname'
+				path: 'findlist/:songname'
 			},
 			{
 				name: '排行榜',
-				path: '#/sort'
+				path: 'sort'
 			},
 			{
 				name: '歌单',
-				path: '#/songlist'
+				path: 'songlist'
 			},
 			{
 				name: '歌手',
-				path: '#/singer'
+				path: 'singer'
 			},
 			{
 				name: '播放列表',
-				path: '#/playlist/:mid'
+				path: 'playlist/:mid'
 			},
 		]
 	},
@@ -226,33 +227,7 @@ new Vue({
 					})
 				}
 			}
-		}
-	},
-	created() {
-		if (this.$route.path == '/') {
-			this.titindex = 0
-		} else if (this.$route.path == '/findlist/' + this.$route.params.songname) {
-			this.titindex = 1
-		} else if (`/playlist/${this.$route.params.mid}/${this.$route.params.songname}`== this.$route.path) {
-			this.titindex = 5
-		}else if ('/sort' == this.$route.path) {
-			this.titindex = 2
-		}else if ('/singer/'+this.$route.params.singermid == this.$route.path) {
-			this.titindex = 4
-		}
-	},
-	updated() {
-		if (this.$route.path == '/') {
-			this.titindex = 0
-		} else if (this.$route.path == '/findlist/' + this.$route.params.songname) {
-			this.titindex = 1
-		} else if (`/playlist/${this.$route.params.mid}/${this.$route.params.songname}`== this.$route.path) {
-			this.titindex = 5
-		}else if ('/sort' == this.$route.path) {
-			this.titindex = 2
-		}else if ('/singer/'+this.$route.params.singermid == this.$route.path) {
-			this.titindex = 4
-		}
+		},
 	},
 	router
 })

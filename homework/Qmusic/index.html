@@ -7,11 +7,11 @@
 		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 	</head>
 	<body>
-		<div id="con">
+		<div id="con" v-cloak="">
 			<div class="hd">
 				<div class="hd_con">
 					<div v-for="(i,$index) in titdata" @click="titindex=$index">
-						<a :href="i.path" :style="{color:$index==titindex?'#31c27c':'#000'}">{{i.name}}</a>
+						<a :href="'#/'+i.path" :style="{color:$route.path.split('/')[1]==i.path.split('/')[0]?'#31c27c':'#000'}">{{i.name}}</a>
 					</div>
 				</div>
 			</div>
@@ -24,6 +24,7 @@
 			</div>
 			<div class="foot">
 				<audio :src="src" autoplay="autoplay"></audio>
+				{{$route.path.split('/')[1]}}
 			</div>
 		</div>
 		<template id="index">
@@ -96,8 +97,7 @@
 						</a>
 						<p v-for="w in i.songList">{{w.songname}} - {{w.singername}}</p>
 					</div>
-				</div>
-				
+				</div>	
 			</div>
 		</template>
 		<template id="songlist">
