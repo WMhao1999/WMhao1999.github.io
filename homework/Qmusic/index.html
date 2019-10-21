@@ -23,8 +23,7 @@
 				</div>
 			</div>
 			<div class="foot">
-				<audio :src="src" autoplay="autoplay"></audio>
-				{{$route.path.split('/')[1]}}
+				<audio :src="src" autoplay="autoplay" controls="controls"></audio>
 			</div>
 		</div>
 		<template id="index">
@@ -67,7 +66,7 @@
 							<div class="list_r" style="color: #000;">
 								<div>
 									<span v-for="w in i.singer" style="cursor: pointer; margin-right: 8px;">
-										<a :href=`#/singer/${w.mid}` style="color: #FFFFFF;">{{w.name}}</a>
+										<a :href=`#/aboutsinger/${w.mid}` style="color: #FFFFFF;">{{w.name}}</a>
 									</span>
 								</div>
 								<div style="cursor: pointer;">{{i.albumname}}</div>
@@ -107,11 +106,11 @@
 		</template>
 		<template id="singer">
 			<div style="color: #FFFFFF;">
-				<h2 style="line-height: 80px;">{{singerlist.singer_name}}</h2>
+				<h2 style="line-height: 80px;">歌手列表</h2>
 				<div>
-					<div class="listitem" v-for="(i,$index) in singerlist.list" :style="{background:$index%2==0?'#ddd':'rgba(255,255,255,.5)'}">
+					<div class="listitem" v-for="(i,$index) in singerlist" :style="{background:$index%2==0?'#ddd':'rgba(255,255,255,.5)'}">
 						<div class="list_l">
-							<a :href=`#/playlist/${i.musicData.songmid}/${i.musicData.songname}` style="color: #31c27c;">{{i.musicData.songname}}</a>
+							<a :href=`#/aboutsinger/${i.mid}` style="color: #31c27c;">{{i.name}}</a>
 						</div>
 					</div>
 				</div>
@@ -147,10 +146,22 @@
 					<div class="list_r" style="color: #000;">
 						<div>
 							<span v-for="w in i.data.singer" style="cursor: pointer; margin-right: 8px;">
-								<a :href=`#/singer/${w.mid}` style="color: #FFFFFF;">{{w.name}}</a>
+								<a :href=`#/aboutsinger/${w.mid}` style="color: #FFFFFF;">{{w.name}}</a>
 							</span>
 						</div>
 						<div style="cursor: pointer;">{{i.data.albumname}}</div>
+					</div>
+				</div>
+			</div>
+		</template>
+		<template id="aboutsinger">
+			<div style="color: #FFFFFF;">
+				<h2 style="line-height: 80px;">{{singerlist.singer_name}}</h2>
+				<div>
+					<div class="listitem" v-for="(i,$index) in singerlist.list" :style="{background:$index%2==0?'#ddd':'rgba(255,255,255,.5)'}">
+						<div class="list_l">
+							<a :href=`#/playlist/${i.musicData.songmid}/${i.musicData.songname}` style="color: #31c27c;">{{i.musicData.songname}}</a>
+						</div>
 					</div>
 				</div>
 			</div>

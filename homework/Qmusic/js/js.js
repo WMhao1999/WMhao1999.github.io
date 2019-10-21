@@ -70,19 +70,19 @@ var routes = [{
 		path: '/sort',
 		component: {
 			template: '#sort',
-			data(){
-				return{
-					sortlist:[]
+			data() {
+				return {
+					sortlist: []
 				}
 			},
-			created(){
-				this.$http.jsonp('https://c.y.qq.com/v8/fcg-bin/fcg_myqq_toplist.fcg?',{
-					params:{
-						format:'jsonp',
-						jsonpCallback:'MusicJsonCallback'
+			created() {
+				this.$http.jsonp('https://c.y.qq.com/v8/fcg-bin/fcg_myqq_toplist.fcg?', {
+					params: {
+						format: 'jsonp',
+						jsonpCallback: 'MusicJsonCallback'
 					},
-					jsonpCallback:'MusicJsonCallback'
-				}).then((res)=>{
+					jsonpCallback: 'MusicJsonCallback'
+				}).then((res) => {
 					this.sortlist = res.data.data.topList
 				})
 			}
@@ -95,27 +95,27 @@ var routes = [{
 		}
 	},
 	{
-		path: '/singer/:singermid',
+		path: '/singer',
 		component: {
 			template: '#singer',
-			data(){
-				return{
-					singerlist:''
+			data() {
+				return {
+					singerlist: []
 				}
 			},
-			activated(){
-				this.$http.jsonp('https://c.y.qq.com/v8/fcg-bin/fcg_v8_singer_track_cp.fcg',{
-					params:{
-						singermid:this.$route.params.singermid,
-						begin:0,
-						num:30,
-						format:'jsonp',
-						jsonpCallback:'callback'
-					},
-					jsonpCallback:'callback'
-				}).then((res)=>{
-					console.log(res.data.data)
-					this.singerlist = res.data.data
+			created() {
+				this.$http.jsonp(
+					'https://c.y.qq.com/v8/fcg-bin/v8.fcg?channel=singer&page=list&key=all_all_all&pagesize=100&pagenum=1&g_tk=5381&jsonpCallback=callback&loginUin=0&hostUin=0&format=jsonp&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0', {
+					jsonpCallback: 'callback'
+					}).then((res) => {
+					for(var i = 0; i < res.data.data.list.length; i++){
+						this.singerlist.push({
+							name:res.data.data.list[i].Fsinger_name,
+							index:res.data.data.list[i].Findex,
+							mid:res.data.data.list[i].Fsinger_mid	
+						})
+					}
+					console.log(this.singerlist)
 				})
 			}
 		}
@@ -127,41 +127,67 @@ var routes = [{
 			data() {
 				return {
 					getsong: true,
-					arr:[]
+					arr: []
 				}
 			},
-			activated(){
+			activated() {
 				this.arr.unshift({
-					name:this.$route.params.songname,
-					mid:this.$route.params.mid
-				}) 
+					name: this.$route.params.songname,
+					mid: this.$route.params.mid
+				})
 			}
 		}
 	},
 	{
-		path:'/sortlist/:id',
-		component:{
-			template:'#sortlist',
-			data(){
-				return{
-					songlist:''
+		path: '/sortlist/:id',
+		component: {
+			template: '#sortlist',
+			data() {
+				return {
+					songlist: ''
 				}
 			},
-			activated(){
-				this.$http.jsonp('https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg',{
-					params:{
-						topid:this.$route.params.id,
-						format:'jsonp',
-						jsonpCallback:'callback'
+			activated() {
+				this.$http.jsonp('https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg', {
+					params: {
+						topid: this.$route.params.id,
+						format: 'jsonp',
+						jsonpCallback: 'callback'
 					},
-					jsonpCallback:'callback'
-				}).then((res)=>{
+					jsonpCallback: 'callback'
+				}).then((res) => {
 					this.songlist = res.data.songlist
 				})
 			}
 		}
+	},
+	{
+		path: '/aboutsinger/:singermid',
+		component: {
+			template: '#aboutsinger',
+			data() {
+				return {
+					singerlist: ''
+				}
+			},
+			activated() {
+				this.$http.jsonp('https://c.y.qq.com/v8/fcg-bin/fcg_v8_singer_track_cp.fcg', {
+					params: {
+						singermid: this.$route.params.singermid,
+						begin: 0,
+						num: 30,
+						format: 'jsonp',
+						jsonpCallback: 'callback'
+					},
+					jsonpCallback: 'callback'
+				}).then((res) => {
+					this.singerlist = res.data.data
+				})
+			}
+		}
 	}
-	
+
+
 ]
 var router = new VueRouter({
 	routes
@@ -172,7 +198,7 @@ new Vue({
 		src: '',
 		titindex: 0,
 		getsong: true,
-		arr:[],
+		arr: [],
 		titdata: [{
 				name: '首页',
 				path: '',
